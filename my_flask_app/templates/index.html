@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Time</title>
+</head>
+<body>
+    <h1>Enter a city to get the current time</h1>
+    <form method="POST">
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required>
+        
+        <label for="timezone">Time Zone:</label>
+        <select id="timezone" name="timezone" required>
+            {% for tz in timezones %}
+                <option value="{{ tz }}">{{ tz }}</option>
+            {% endfor %}
+        </select>
+        
+        <button type="submit">Get Time</button>
+    </form>
+    {% if current_time %}
+        <h2>Current time: {{ current_time }}</h2>
+    {% endif %}
+</body>
+</html>

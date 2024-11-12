@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Color</title>
+</head>
+<body>
+    <h1>Edit Color</h1>
+    <form action="{{ url_for('edit_color', id=color.id) }}" method="POST">
+        <label for="color_code">Color Code:</label>
+        <input type="text" id="color_code" name="color_code" value="{{ color.color_code }}" required>
+        <br>
+        <label for="color_type">Color Type:</label>
+        <input type="text" id="color_type" name="color_type" value="{{ color.color_type }}" required>
+        <br>
+        <input type="submit" value="Update">
+    </form>
+    <a href="{{ url_for('colors') }}">Back to All Colors</a>
+</body>
+</html>
