@@ -4,64 +4,97 @@
     <meta charset="UTF-8">
     <title>Top Colors Finder</title>
     <style>
-        *{
+        * {
             box-sizing: border-box;
-            margin: 0%;
-            padding: 0%;
-        }
-
-        header, form, main{
-            margin: auto;
-            width: 70%;
-            font-family: Helvetica;
-            padding: 1.1rem 1.2rem;
-        }
-
-        header > h1{
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        header > p{
-            color: gray;
-            font-size: 1.2rem;
-        }
-
-        form{
-            background-color: skyblue;
-        }
-
-        input{
-            margin: 10px 0;
-        }
-
-        input[type='submit'], input[type='file']{
-            font-size: 1.2rem;
-        }
-
-        input:hover{
-            cursor: pointer;
-        }
-
-        input[type='submit']{
-            padding: 0.5rem 0.8rem;
-            border: 2px solid #003333;
-            background-color: #003333;
-            color: white;
-            border-radius: 4px;
-        }
-
-        main{
+            margin: 0;
             padding: 0;
         }
 
-        .pair{
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('https://source.unsplash.com/1600x900/?nature,water') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header, form, main {
+            margin: auto;
+            width: 70%;
+            padding: 1.1rem 1.2rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 0;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            border-radius: 8px 8px 0 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        header > h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        header > p {
+            color: #f4f4f4;
+            font-size: 1.2rem;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        input {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type='submit'], input[type='file'] {
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        input[type='submit'] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type='submit']:hover {
+            background-color: #0056b3;
+        }
+
+        main {
+            padding: 20px 0;
+        }
+
+        .pair {
             width: 100%;
             display: flex;
             margin: auto;
             align-items: center;
+            margin-bottom: 10px;
+            animation: fadeIn 1s ease-in-out;
         }
-        .pair > .color-box{
+
+        .pair > .color-box {
             width: 50%;
             height: 50px;
             border: 1px solid black;
@@ -69,13 +102,87 @@
             padding: 1.1%;
             margin: 0;
         }
-        .pair > .color-box-value{
+
+        .pair > .color-box-value {
             width: 50%;
             height: 50px;
             border: 1px solid black;
             text-align: center;
             padding: 1.1%;
             margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .uploaded-image {
+            max-width: 100%;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .view-colors-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .view-colors-link:hover {
+            background-color: #218838;
+        }
+
+        .search-bar {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .search-bar input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .search-bar input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-bar input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -87,6 +194,12 @@
             If two colors appear same number of times, both will be shown here.
         </p>
     </header>
+    <div class="search-bar">
+        <form action="/" method="GET">
+            <input type="text" name="search" placeholder="Search colors...">
+            <input type="submit" value="Search">
+        </form>
+    </div>
     <form action="/" method="POST" enctype="multipart/form-data">
         <input type="file" name="file" required />
         <br>
@@ -99,7 +212,7 @@
     <main>
         {% if image_url %}
             <h2>Uploaded Image:</h2>
-            <img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 100%;">
+            <img src="{{ image_url }}" alt="Uploaded Image" class="uploaded-image">
         {% endif %}
         {% for i in range(colors_list|length) %}
             <div class="pair">
@@ -113,6 +226,6 @@
             </div>
         {% endfor %}
     </main>
-    <a href="{{ url_for('colors') }}">View All Colors</a>
+    <a href="{{ url_for('colors') }}" class="view-colors-link">View All Colors</a>
 </body>
 </html>
